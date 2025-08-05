@@ -1,6 +1,6 @@
 # ecqs-feature-stampa-protocolli
 
-Servizio REST scritto in **Kotlin** con **Spring Boot** per la generazione e il recupero di documenti PDF relativi a pratiche di prestito. I PDF vengono creati a partire da un template Word (`template.docx`) che viene popolato tramite *poi-tl* e convertito in PDF utilizzando **docx4j-export-fo** e **Apache FOP**.
+Servizio REST scritto in **Kotlin** con **Spring Boot** per la generazione e il recupero di documenti PDF relativi a pratiche di prestito. I PDF vengono creati a partire da un template Word (`template.docx`) che viene popolato tramite *poi-tl* e convertito in PDF tramite **JODConverter** e **LibreOffice**.
 
 ## Endpoints principali
 

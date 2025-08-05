@@ -10,7 +10,7 @@ version = "1.0.0"
 
 java {
         toolchain {
-                languageVersion = JavaLanguageVersion.of(17)
+                languageVersion = JavaLanguageVersion.of(21)
         }
 }
 
@@ -23,8 +23,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("com.deepoove:poi-tl:1.12.2")
-        implementation("org.docx4j:docx4j-JAXB-ReferenceImpl:11.4.9")
-        implementation("org.docx4j:docx4j-export-fo:11.4.9")
+        implementation("org.jodconverter:jodconverter-local:4.4.6")
         implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")

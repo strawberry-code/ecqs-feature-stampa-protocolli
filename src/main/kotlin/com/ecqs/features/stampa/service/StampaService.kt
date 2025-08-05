@@ -12,8 +12,9 @@ import org.springframework.core.io.ByteArrayResource
 import org.springframework.core.io.Resource
 import org.springframework.core.io.ResourceLoader
 import org.springframework.stereotype.Service
-import org.docx4j.Docx4J
-import org.docx4j.openpackaging.packages.WordprocessingMLPackage
+import org.jodconverter.JodConverter
+import org.jodconverter.core.document.DefaultDocumentFormatRegistry
+import org.jodconverter.local.office.LocalOfficeManager
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.util.Base64
@@ -100,9 +101,19 @@ class StampaService(private val resourceLoader: ResourceLoader) {
     }
 
     private fun convertToPdf(docxBytes: ByteArray): ByteArray {
-        val wordMLPackage = WordprocessingMLPackage.load(ByteArrayInputStream(docxBytes))
-        val out = ByteArrayOutputStream()
-        Docx4J.toPDF(wordMLPackage, out)
-        return out.toByteArray()
+        val officeManager = LocalOfficeManager.install()
+        return try {
+            officeManager.start()
+            val outputStream = ByteArrayOutputStream()
+            JodConverter
+                .convert(ByteArrayInputStream(docxBytes))
+                .as(DefaultDocumentFormatRegistry.DOCX)
+                .to(outputStream)
+                .as(DefaultDocumentFormatRegistry.PDF)
+                .execute()
+            outputStream.toByteArray()
+        } finally {
+            officeManager.stop()
+        }
     }
 }
