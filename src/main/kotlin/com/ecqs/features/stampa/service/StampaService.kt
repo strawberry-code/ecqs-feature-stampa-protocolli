@@ -22,7 +22,7 @@ import java.util.Base64
 @Service
 class StampaService(private val resourceLoader: ResourceLoader) {
 
-    private val MOCK_PRATICA_ID = "N06FOOGH"
+    private val MOCK_PRATICA_ID = "N06FOOGHY"
     private val MOCK_PROTOCOLLO = "123-asd"
     private val TEMPLATE_NAME = "template.docx"
     private val MOCK_DB_DOCUMENT_BASE64 = "JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9Db3VudCAxIC9LaWRzIFszIDAgUl0gPj4KZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA1OTUuMjggODQxLjg5XSAvQ29udGVudHMgNCAwIFIgPj4KZW5kb2JqCjQgMCBvYmoKPDwgL0xlbmd0aCAwID4+CnN0cmVhbQplbmRzdHJlYW0KZW5kb2JqCnhyZWYKMCA1CjAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMTMgMDAwMDAgbiAKMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDA5NiAwMDAwMCBuIAowMDAwMDAxNTEgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA1IC9Sb290IDEgMCBSIC9JbmZvIDYgMCBSID4+CnN0YXJ0eHJlZgo2NQolJUVPRgo=" // base64 di un PDF vuoto
@@ -65,7 +65,7 @@ class StampaService(private val resourceLoader: ResourceLoader) {
     }
 
     private fun getPraticaFromCordappMock(idPratica: String): Pratica {
-        if (idPratica.length != 8 || !idPratica.matches(Regex("[a-zA-Z0-9]+")))
+        if (idPratica.length != 9 || !idPratica.matches(Regex("[a-zA-Z0-9]+")))
             throw PraticaNotFoundException("Formato idPratica non valido. Richiesti 8 caratteri alfanumerici.")
 
         if (!idPratica.equals(MOCK_PRATICA_ID, ignoreCase = true))
