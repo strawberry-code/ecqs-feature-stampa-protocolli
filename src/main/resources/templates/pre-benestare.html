@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>Pre Benestare</title>
+    <meta charset="UTF-8"/>
+    <title>[[${DOCUMENT_TITLE}]]</title>
     <link rel="stylesheet" href="report.css"/>
 </head>
 <body>
     <div class="header">
-        <img src="logo.png" alt="Logo">
+        <img src="logo.png" alt="Logo"/>
     </div>
 
     <div class="content">
-        <h1>Pre Benestare</h1>
-        <p>Contenuto del documento...</p>
+        <h1>[[${DOCUMENT_TITLE}]]</h1>
+        <p>[[${DATA_EMISSIONE}]]</p>
+        <p>[[${PROTOCOLLO}]]</p>
+        <pre>[[${CAMPI_TEMPLATE}]]</pre>
     </div>
 </body>
 </html>

@@ -21,7 +21,8 @@ class PdfService(private val templateEngine: TemplateEngine) {
         val builder = PdfRendererBuilder()
         builder.useFastMode()
 
-        val fontSupplier = FSSupplier<InputStream> { this.javaClass.classLoader.getResourceAsStream("fonts/Roboto-Regular.ttf") }
+        val fontSupplier =
+            FSSupplier<InputStream> { this.javaClass.classLoader.getResourceAsStream("fonts/Roboto-Regular.ttf") }
         builder.useFont(fontSupplier, "Roboto")
 
         builder.withHtmlContent(html, "classpath:/templates/")

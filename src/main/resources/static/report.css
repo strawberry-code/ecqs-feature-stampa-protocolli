@@ -15,3 +15,8 @@
 .header {
     position: running(header);
 }
+
+.header img {
+    width: 26mm;
+    height: 26mm;
+}
