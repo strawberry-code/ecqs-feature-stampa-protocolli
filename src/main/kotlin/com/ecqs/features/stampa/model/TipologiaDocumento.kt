@@ -1,14 +1,19 @@
 package com.ecqs.features.stampa.model
 
-enum class TipologiaDocumento(val displayName: String) {
-    ALLEGATO_B("Allegato B"),
-    PRE_BENESTARE("Pre Benestare"),
-    SINISTRI("Sinistri");
+enum class TipologiaDocumento(val displayName: String, val templateName: String) {
+    PRE_BENESTARE("Pre Benestare", "pre-benestare"),
+    ALLEGATO_B("Allegato B", "allegato-b"),
+    SINISTRI("Sinistri", "sinistri");
 
     companion object {
         fun fromString(value: String): TipologiaDocumento {
-            return entries.firstOrNull { it.name.equals(value.replace("-", "_"), ignoreCase = true) }
-                ?: throw IllegalArgumentException("Tipologia non valida. Valori ammessi: ${entries.joinToString { it.name.lowercase().replace("_", "-") }}")
+            return when (value.lowercase()) {
+                "pre-benestare" -> PRE_BENESTARE
+                "allegato-b" -> ALLEGATO_B
+                "sinistri" -> SINISTRI
+                else -> throw IllegalArgumentException("Tipologia documento non valida. Valori ammessi: pre-benestare, allegato-b, sinistri.")
+            }
         }
     }
 }
+

@@ -1,0 +1,17 @@
+@page {
+    size: A4 portrait;
+    margin: 20mm 15mm 25mm 15mm;
+
+    @top-center {
+        content: element(header);
+    }
+
+    @bottom-right {
+       font: 10pt "Roboto", sans-serif;
+       content: "Page " counter(page) " / " counter(pages);
+    }
+}
+
+.header {
+    position: running(header);
+}
