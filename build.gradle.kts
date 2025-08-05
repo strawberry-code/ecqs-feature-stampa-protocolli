@@ -9,9 +9,9 @@ group = "com.ecqs"
 version = "1.0.0"
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+        toolchain {
+                languageVersion = JavaLanguageVersion.of(17)
+        }
 }
 
 repositories {
@@ -22,7 +22,10 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("com.deepoove:poi-tl:1.12.2")
+        implementation("com.deepoove:poi-tl:1.12.2")
+        implementation("org.docx4j:docx4j-JAXB-ReferenceImpl:11.4.9")
+        implementation("org.docx4j:docx4j-export-fo:11.4.9")
+        implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")

@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
+import io.swagger.v3.oas.annotations.Operation
 
 @RestController
 @RequestMapping("/stampa")
-// TODO: Sviluppare la documentazione Swagger/OpenAPI per gli endpoint di stampa.
 class StampaController(private val stampaService: StampaService) {
 
+    @Operation(summary = "Genera un nuovo PDF per la pratica indicata")
     @GetMapping("/{idPratica}/{tipologia}")
     fun getDocument(
         @PathVariable idPratica: String,
@@ -24,10 +25,11 @@ class StampaController(private val stampaService: StampaService) {
     ): ResponseEntity<Resource> {
         val protocollo = generateNewProtocollo() // Genera un nuovo protocollo
         val resource = stampaService.getDocument(idPratica, tipologia, protocollo)
-        val filename = "${TipologiaDocumento.fromString(tipologia).displayName.replace(" ", "_")}_${idPratica}.docx"
+        val filename = "${TipologiaDocumento.fromString(tipologia).displayName.replace(" ", "_")}_${idPratica}.pdf"
         return buildResponse(resource, filename)
     }
 
+    @Operation(summary = "Recupera un PDF esistente tramite protocollo")
     @GetMapping("/{protocollo}")
     fun getDocumentWithProtocol(
         @PathVariable protocollo: String
@@ -51,7 +53,7 @@ class StampaController(private val stampaService: StampaService) {
         }
         return ResponseEntity.ok()
             .headers(headers)
-            .contentType(MediaType.APPLICATION_OCTET_STREAM)
+            .contentType(MediaType.APPLICATION_PDF)
             .body(resource)
     }
 }
